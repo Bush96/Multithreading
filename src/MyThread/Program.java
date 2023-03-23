@@ -39,7 +39,7 @@ public class Program {
     }
 
 
-////////////////////////EXECUTORSERVICE/////////////////////////////////
+    ////////////////////////EXECUTORSERVICE/////////////////////////////////
     public void doWorkWithThreadPool() {
         long time = System.currentTimeMillis();
         System.out.println("List before work: " + personList.size());
@@ -64,9 +64,11 @@ public class Program {
 
         FutureTask futureTask = new FutureTask(new ThreadWorkCall());
         new Thread(futureTask).start();
+        FutureTask futureTask1 = new FutureTask(new ThreadWorkCall());
+        new Thread(futureTask1).start();
 
-        System.out.println( futureTask.get());
-
+        futureTask.get();
+        futureTask1.get();
         System.out.println("List after work: " + personList.size());
         System.out.println("Time in work is: " + (System.currentTimeMillis() - time));
     }
